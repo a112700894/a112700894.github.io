@@ -1,0 +1,93 @@
+# bat学习笔记
+2022-09-12
+## bat概况和理解
+批处理(Batch)，也称为批处理脚本。顾名思义，批处理就是对某对象进行批量的处理，通常被认为是一种简化的脚本语言，它应用于DOS和Windows系统中。批处理文件的扩展名为bat。
+### 学习目的
+工作中发现许多简单重复的劳动可以通过编写批处理程序来完成，例如批量创建文件夹，复制具有相同特征的文件等。在学习中也发现熟悉批处理命令对处理系统相关任务非常有益。
+## 批处理运算操作
+## 批处理基本命令
+### 1.命令格式
+①命令 子命令 参数 操作 选项
+②命令帮助信息查看 /？ /help
+### 2.批处理文件参数传递
+.bat文件接受使用%num传递参数
+例如：net user %1 %2 /add     其中%1传递用户名，%2传递密码
+### 3.炫酷命令提示符
+颜色命令 color
+标题命令 title
+### 4.时间相关命令
+date
+time
+### 5.启动命令 start
+[start文档](https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/start)
+### 6.调用其他bat文件 call
+### 7.任务列表查看命令 tasklist
+该命令可以查看本地或远程计算机上当前运行的进程列表
+tasklist /s ip /v username /p password
+### 8.任务关闭命令 taskkill
+该命令按照PID或映像名称终止任务
+### 9.文件夹结构查看命令 tree
+查看所有文件 tree /f
+### 10.关机命令 shutdown
+### 11.计划任务命令 at(win10改用schtasks)
+[schtasks文档](https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/schtasks?source=recommendations)
+### 12.批处理环境变量 set
+
+## 文件夹和文件相关命令
+### 1.目录浏览 dir
+### 2.目录新建 mkdir(md)与删除 rmdir
+### 3.目录切换 cd
+### 4.目录重命名 ren
+### 5.目录复制 copy
+copy test1 test2 (test1出发地 test2目的地)
+### 6.文件删除命令 del
+del c:\test\*.txt 删除目录下所有txt文件
+[del文档](https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/del)
+del /q	指定安静模式。 系统不会提示你进行删除确认。
+### 7.文件剪切 move(也可重命名)
+move c:\1\test1.txt c:\2\test2.txt
+将1文件夹下的test1.txt剪切至2文件夹下，并命名为test2.txt
+## 网络命令
+### 1.用户操作命令 net user
+### 2.用户组操作命令 net localgroup
+### 3.网络连通性检测命令 ping
+### 4.网络连接命令 telnet
+### 5.网络适配器命令 ipconfig
+### 6.路由信息查看 tracert
+### 7.ARP信息命令 arp 
+## 条件判断结构
+### 1.if-else结构
+## 循环结构
+### 1.遍历目录(文件夹名称)
+for /d %%名称 in (路径/*) do 具体操作
+### 2.遍历目录和子目录下文件
+for /r "目录路径" %%名称 in (匹配规则 例如*.txt) do 具体操作
+### 3.遍历数字
+for /l in (start,step,end) do 具体操作
+### 4.遍历文件内容
+for /f %%名称 in (文件名) do 具体操作
+## 实战技巧
+### 1.@echo off
+[echo文档](https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/echo)
+### 2.setlocal enabledelayedexpansion
+[setlocal文档](https://docs.microsoft.com/zh-cn/windows-server/administration/windows-commands/setlocal)
+### 3.pause>nul
+### 4.注意文件编码方式，ANSI而非UTF-8
+### 5.rem 注释
+### 6.创建变量 set /a %%v
+### 7.cls 清屏
+## 快捷键
+| 命令 | 用途 | 命令 | 用途 |
+|:--:|:--:|:--:|:--:|
+|calc|计算器|regedit|注册表|
+|notepad|记事本|taskmgr|任务管理器|
+|write|写字板|mstsc|远程桌面|
+|mspaint|画图|explorer|资源管理器|
+|magnify|放大镜|perfmon.msc|资源监视器|
+|osk|屏幕键盘|msconfig|系统配置实用工具|
+|charmap|字符映射表|mmc|控制台|
+|eudcedit |专用字符编辑|services.msc|服务|
+|sndvol|音量调节|diskmgmt.msc|磁盘管理|
+|winver|关于windows|eventvwr.msc|事件查看器|
+|compmgmt.msc|计算机管理|devmgmt.msc|设备管理器|
+|dcomcnfg|组件管理|secpol.msc|本地安全策略|
